@@ -61,5 +61,10 @@ public class MyRectangle implements Shape{
     public void printShape() {
         System.out.println("Rectangle");
     }
+
+    @Override
+    public Point getPosition() {
+        return new Point(x,y);
+    }
     
 }

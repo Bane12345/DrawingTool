@@ -66,4 +66,8 @@ public class MyLine implements Shape{
         System.out.println("LINE");
     }
     
+    @Override
+    public Point getPosition() {
+        return new Point(x1,y1);
+    }
 }

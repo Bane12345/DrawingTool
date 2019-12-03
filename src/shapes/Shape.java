@@ -19,5 +19,6 @@ public interface Shape {
     public boolean pointInside(Point p);
     public void setPosition(int x,int y);
     public Shape copy();
+    public Point getPosition();
     public void printShape();
 }

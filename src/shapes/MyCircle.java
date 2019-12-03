@@ -61,4 +61,9 @@ public class MyCircle implements Shape{
     public void printShape() {
         System.out.println("CIRCLE");
     }
+    
+    @Override
+    public Point getPosition() {
+        return new Point(x,y);
+    }
 }

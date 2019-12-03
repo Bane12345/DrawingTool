@@ -6,6 +6,7 @@
 package listeners;
 
 import form.DrawingPanel;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,7 +22,8 @@ import shapes.Shape;
 public class DrawingPanelListener implements ActionListener,MouseListener,MouseMotionListener{
     private DrawingPanel drawingPanel;
     private ArrayList<Shape> drawingPanelShapeList;
-
+    private int dx=0,dy=0;
+    private Shape selectedShape=null;
     public DrawingPanelListener(DrawingPanel drawingPanel) {
         this.drawingPanel = drawingPanel;
         this.drawingPanelShapeList = this.drawingPanel.getDrawingPanelShapeList();
@@ -38,6 +40,7 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
 
     @Override
     public void mousePressed(MouseEvent e) {
+        distance(e.getPoint());
     }
 
     @Override
@@ -54,10 +57,33 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        move(dx,dy,selectedShape,e.getPoint());
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
     }
     
+    public void distance(Point p){
+        int n = drawingPanelShapeList.size();
+        for (Shape shape : drawingPanelShapeList){
+            if(shape.pointInside(p)){
+                //Udaljenost tacke klika od x i y koordinate oblika
+                Point pshape = shape.getPosition(); //position of shape
+                int xs =(int) pshape.getX();
+                int ys =(int) pshape.getY();
+                int xp =(int) p.getX();
+                int yp =(int) p.getY();
+                dx = xp - xs;
+                dy = yp - ys;
+                selectedShape=shape;
+            }
+        }
+    }
+    
+    public void move(int dx,int dy,Shape shape,Point p){
+        int xp = (int) p.getX();
+        int yp = (int) p.getY();
+        shape.setPosition(xp-dx,yp-dy);
+    }
 }

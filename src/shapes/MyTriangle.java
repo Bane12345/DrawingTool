@@ -72,4 +72,9 @@ public class MyTriangle implements Shape{
     public void printShape() {
         System.out.println("TRIANGLE");
     }
+    
+    @Override
+    public Point getPosition() {
+        return new Point(x1,y1);
+    }
 }
