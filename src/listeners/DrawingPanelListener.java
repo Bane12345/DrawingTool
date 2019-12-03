@@ -45,6 +45,7 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        selectedShape=null;
     }
 
     @Override
@@ -84,6 +85,10 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
     public void move(int dx,int dy,Shape shape,Point p){
         int xp = (int) p.getX();
         int yp = (int) p.getY();
-        shape.setPosition(xp-dx,yp-dy);
+        try{
+            shape.setPosition(xp-dx,yp-dy);
+        }catch(NullPointerException exc){
+            
+        }
     }
 }
