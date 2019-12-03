@@ -21,7 +21,7 @@ import shapes.Shape;
  */
 public class ToolPanel extends javax.swing.JPanel {
     private ArrayList<Shape> toolPanelShapeList;
-    private Color backgroundColor = new Color(97, 128, 115);
+    private Color backgroundColor = new Color(101, 230, 189);
     private final Color normalColor = new Color(33, 92, 46);
     private final Color hoverColor = new Color(3, 148, 252);
     private final int height=600,width=200;
