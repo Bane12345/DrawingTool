@@ -5,6 +5,8 @@
  */
 package form;
 
+import javax.swing.JMenuBar;
+
 /**
  *
  * @author Bane
@@ -33,10 +35,16 @@ public class MyForm extends javax.swing.JFrame {
         headerPanel = new form.HeaderPanel();
         toolPanel = new form.ToolPanel();
         drawingPanel = new form.DrawingPanel();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
+        drawingPanel.setMinimumSize(new java.awt.Dimension(2000, 1000));
         drawingPanel.setPreferredSize(new java.awt.Dimension(793, 483));
 
         javax.swing.GroupLayout drawingPanelLayout = new javax.swing.GroupLayout(drawingPanel);
@@ -47,8 +55,23 @@ public class MyForm extends javax.swing.JFrame {
         );
         drawingPanelLayout.setVerticalGroup(
             drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Clear");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Undo");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Settings");
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar.add(jMenu1);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,11 +122,19 @@ public class MyForm extends javax.swing.JFrame {
     public void setDrawingPanel(DrawingPanel drawingPanel) {
         this.drawingPanel = drawingPanel;
     }
-    
+
+    public JMenuBar getJMenuBar(){
+        return jMenuBar;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private form.DrawingPanel drawingPanel;
     private form.HeaderPanel headerPanel;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private form.ToolPanel toolPanel;
     // End of variables declaration//GEN-END:variables
 }

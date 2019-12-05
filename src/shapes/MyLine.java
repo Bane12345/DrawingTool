@@ -5,6 +5,7 @@
  */
 package shapes;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -30,12 +31,13 @@ public class MyLine implements Shape{
     public void draw(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(color);
+        g2d.setStroke(new BasicStroke(8));
         g2d.drawLine(x1,y1,x2,y2);
     }
 
     @Override
     public boolean pointInside(Point p) {
-        if(x1<=p.getX()&&x2>=p.getX()&&y1<=p.getY()+3&&y2>=p.getY()-3)
+        if(x1<=p.getX()&&x2>=p.getX()&&y1<=p.getY()+4&&y2>=p.getY()-4)
             return true;
         return false;
     }

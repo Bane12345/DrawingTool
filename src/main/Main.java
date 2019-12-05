@@ -7,6 +7,7 @@ package main;
 
 import controller.Controller;
 import form.MyForm;
+import javax.swing.ImageIcon;
 import model.Model;
 
 /**
@@ -16,7 +17,7 @@ import model.Model;
 public class Main {
     public static void main(String[] args) {
         MyForm myform = new MyForm();
-        Model model = new Model();
+        Model model = new Model();        
         Controller controller = new Controller(myform,model);
         controller.showMyForm();
     }

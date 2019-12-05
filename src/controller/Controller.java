@@ -7,9 +7,12 @@ package controller;
 
 import form.MyForm;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.Timer;
 import listeners.DrawingPanelListener;
+import listeners.MyMenuListener;
 import listeners.ToolPanelListener;
 import model.DrawingPanelModel;
 import model.Model;
@@ -34,9 +37,8 @@ public class Controller {
         prepareToolPanel();
         prepareHeaderPanel();
         prepareDrawingPanel();
-        myForm.setVisible(true);
-        myForm.setLocationRelativeTo(null);
-        myForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        prepareMenu();
+        prepareForm();
     }
     
     private void prepareToolPanel(){
@@ -69,4 +71,18 @@ public class Controller {
         myForm.getDrawingPanel().setDrawingPanelShapeList(drawingPanelShapeList);
         createDrawingPanelListener();
     }
+
+    private void prepareForm() {
+        ImageIcon img = new ImageIcon("resources\\crtanje.png");
+        myForm.setIconImage(img.getImage());
+        myForm.setVisible(true);
+        myForm.setLocationRelativeTo(null);
+        myForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void prepareMenu() {
+        MyMenuListener myMenuListener = new MyMenuListener(myForm);
+    }
+    
+    
 }
