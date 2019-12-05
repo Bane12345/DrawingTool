@@ -5,7 +5,9 @@
  */
 package listeners;
 
+
 import form.MyForm;
+import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -69,10 +71,19 @@ public class ToolPanelListener implements ActionListener,MouseMotionListener,Mou
         ArrayList<Shape> toolPanelShapeList = model.getToolPanelModel().getToolPanelShapeList();
         int n = toolPanelShapeList.size();
         
+        boolean hovered = false;
         for(int i=0;i<n;i++){
-            if(toolPanelShapeList.get(i).pointInside(p))
+            if(toolPanelShapeList.get(i).pointInside(p)){
+                myForm.getToolPanel().setCursor(new Cursor(Cursor.HAND_CURSOR));
                 toolPanelShapeList.get(i).setColor(myForm.getToolPanel().getHoverColor());
-            else toolPanelShapeList.get(i).setColor(myForm.getToolPanel().getNormalColor());
+                hovered = true;
+            }
+            else{ 
+                toolPanelShapeList.get(i).setColor(myForm.getToolPanel().getNormalColor());
+            }
+        }
+        if(!hovered){
+            myForm.getToolPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
     }
     

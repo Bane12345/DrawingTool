@@ -6,6 +6,7 @@
 package listeners;
 
 import form.DrawingPanel;
+import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,7 +41,7 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
 
     @Override
     public void mousePressed(MouseEvent e) {
-        distance(e.getPoint());
+        
     }
 
     @Override
@@ -63,10 +64,12 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        distance(e.getPoint());
     }
     
     public void distance(Point p){
         int n = drawingPanelShapeList.size();
+        boolean hovered = false;//Flag to show move cursor
         for (Shape shape : drawingPanelShapeList){
             if(shape.pointInside(p)){
                 //Udaljenost tacke klika od x i y koordinate oblika
@@ -78,7 +81,13 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
                 dx = xp - xs;
                 dy = yp - ys;
                 selectedShape=shape;
+                hovered=true;
             }
+        }
+        if (hovered){
+            drawingPanel.setCursor(new Cursor(Cursor.MOVE_CURSOR));
+        }else{                 
+            drawingPanel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
     }
     
