@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Random;
 
 /**
  *
@@ -19,12 +20,22 @@ public class MyRectangle implements Shape{
     private int x,y;
     private int width,height;
     private Color color;
+    private MyLine myLine;
     public MyRectangle(int x, int y, int width, int height,Color color) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.color=color;
+    }
+    
+    public MyLine getMyLine() {
+        return myLine;
+    }
+
+    public void setMyLine(MyLine myLine) {
+        myLine.setPosition(x-width/2, y-height/2);
+        this.myLine = myLine;
     }
     
     @Override
@@ -46,7 +57,9 @@ public class MyRectangle implements Shape{
     }
 
     @Override
-    public void setPosition(int x, int y) {
+    public void setRandomPosition(Random r) {
+        int x = r.nextInt(750);
+        int y = r.nextInt(400);
         this.x=x;
         this.y=y;
     }
@@ -66,5 +79,16 @@ public class MyRectangle implements Shape{
     public Point getPosition() {
         return new Point(x,y);
     }
+
+    @Override
+    public void setPosition(int x, int y) {
+        this.x=x-width/2;
+        this.y=y-height/2;
+    }
     
+    @Override
+    public void moveShape(int x, int y) {
+        this.x=x;
+        this.y=y;
+    }
 }

@@ -15,8 +15,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import model.Model;
+import shapes.MyLine;
 import shapes.Shape;
 
 /**
@@ -47,6 +49,7 @@ public class ToolPanelListener implements ActionListener,MouseMotionListener,Mou
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getX()+" "+e.getY());        
         Point p = new Point(e.getX(),e.getY());
         clicked(p);
     }
@@ -82,7 +85,7 @@ public class ToolPanelListener implements ActionListener,MouseMotionListener,Mou
                 toolPanelShapeList.get(i).setColor(myForm.getToolPanel().getNormalColor());
             }
         }
-        if(!hovered){
+        if((!hovered)&&model.getSelectedShape()==null){
             myForm.getToolPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
     }
@@ -90,13 +93,11 @@ public class ToolPanelListener implements ActionListener,MouseMotionListener,Mou
     public void clicked(Point p){
         ArrayList<Shape> toolPanelShapeList = model.getToolPanelModel().getToolPanelShapeList();
         int n = toolPanelShapeList.size();
-        for (Shape shape : toolPanelShapeList){
-            if(shape.pointInside(p)){
-                Shape newShape = shape.copy();
-                newShape.setPosition(generateRandom(0, 700),generateRandom(0, 450));
-                newShape.setColor(myForm.getToolPanel().getNormalColor());
-                myForm.getDrawingPanel().getDrawingPanelShapeList().add(newShape);
-                
+        for(int i=0;i<n;i++){
+            if(toolPanelShapeList.get(i).pointInside(p)){
+                model.setSelectedShape(toolPanelShapeList.get(i).copy());
+                myForm.getDrawingPanel().setCursor(new Cursor(Cursor.HAND_CURSOR));
+                myForm.getToolPanel().setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         }
     }
@@ -105,5 +106,16 @@ public class ToolPanelListener implements ActionListener,MouseMotionListener,Mou
         Random r = new Random();
         int result = r.nextInt(b-a) + a;
         return result;
+    }
+
+    private void insertLine(MyLine myNewLine) {
+        List<Shape> drawingPanelShapeList = myForm.getDrawingPanel().getDrawingPanelShapeList();
+        for(Shape shape: drawingPanelShapeList){
+            if(!(shape instanceof MyLine)){
+                if(shape.getMyLine()==null){
+                    shape.setMyLine(myNewLine);
+                }
+            }
+        }
     }
 }

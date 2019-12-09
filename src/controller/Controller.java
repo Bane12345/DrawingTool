@@ -51,14 +51,14 @@ public class Controller {
     private void createToolPanelListener(){
         ToolPanelListener toolPanelListener = new ToolPanelListener(myForm,model);
         myForm.getToolPanel().addToolPanelListener(toolPanelListener);
-        timer1 = new Timer(1,toolPanelListener);
+        timer1 = new Timer(3,toolPanelListener);
         timer1.start();
     }
     
     private void createDrawingPanelListener(){
-        DrawingPanelListener drawingPanelListener = new DrawingPanelListener(myForm.getDrawingPanel());
+        DrawingPanelListener drawingPanelListener = new DrawingPanelListener(model,myForm);
         myForm.getDrawingPanel().addDrawingPanelListener(drawingPanelListener);
-        timer2 = new Timer(1,drawingPanelListener);
+        timer2 = new Timer(3,drawingPanelListener);
         timer2.start();
     }
     private void prepareHeaderPanel(){

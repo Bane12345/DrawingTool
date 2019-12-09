@@ -8,6 +8,7 @@ package shapes;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.Random;
 
 /**
  *
@@ -17,8 +18,12 @@ public interface Shape {
     public void draw(Graphics g);
     public void setColor(Color color);
     public boolean pointInside(Point p);
+    public void setRandomPosition(Random r);
     public void setPosition(int x,int y);
     public Shape copy();
     public Point getPosition();
     public void printShape();
+    public MyLine getMyLine();
+    public void setMyLine(MyLine myLine);
+    public void moveShape(int x,int y);
 }

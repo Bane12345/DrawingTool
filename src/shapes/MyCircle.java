@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.Random;
 
 /**
  *
@@ -18,6 +19,7 @@ public class MyCircle implements Shape{
     private int x,y;
     private int r;
     private Color color;
+    private MyLine myLine;
     public MyCircle(int x, int y, int r,Color color) {
         this.x = x;
         this.y = y;
@@ -25,6 +27,15 @@ public class MyCircle implements Shape{
         this.color = color;
     }
 
+    public MyLine getMyLine() {
+        return myLine;
+    }
+
+    public void setMyLine(MyLine myLine) {
+        myLine.setPosition(x-r/2, y-r/2);
+        this.myLine = myLine;
+    }
+    
     @Override
     public void draw(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
@@ -46,7 +57,9 @@ public class MyCircle implements Shape{
     }
 
     @Override
-    public void setPosition(int x, int y) {
+    public void setRandomPosition(Random r) {
+        int x = r.nextInt(750);
+        int y = r.nextInt(400);
         this.x=x;
         this.y=y;
     }
@@ -65,5 +78,17 @@ public class MyCircle implements Shape{
     @Override
     public Point getPosition() {
         return new Point(x,y);
+    }
+
+    @Override
+    public void setPosition(int x, int y) {
+        this.x=x-r/2;
+        this.y=y-r/2;
+    }
+
+    @Override
+    public void moveShape(int x, int y) {
+        this.x=x;
+        this.y=y;
     }
 }

@@ -54,8 +54,8 @@ public class HeaderPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(lbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -65,6 +65,8 @@ public class HeaderPanel extends javax.swing.JPanel {
         lbl1.setFont(f);
         lbl1.setHorizontalAlignment((int) JLabel.CENTER_ALIGNMENT);
     }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl1;
     // End of variables declaration//GEN-END:variables

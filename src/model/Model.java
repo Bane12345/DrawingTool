@@ -5,6 +5,8 @@
  */
 package model;
 
+import shapes.Shape;
+
 /**
  *
  * @author Bane
@@ -13,6 +15,7 @@ public class Model {
     private ToolPanelModel toolPanelModel;
     private HeaderPanelModel headerPanelModel;
     private DrawingPanelModel drawingPanelMode;
+    private Shape selectedShape;
     public Model() {
         this.toolPanelModel = new ToolPanelModel();
         this.headerPanelModel = new HeaderPanelModel();
@@ -42,6 +45,12 @@ public class Model {
     public void setDrawingPanelMode(DrawingPanelModel drawingPanelMode) {
         this.drawingPanelMode = drawingPanelMode;
     }
-    
-    
+
+    public Shape getSelectedShape() {
+        return selectedShape;
+    }
+
+    public void setSelectedShape(Shape selectedShape) {
+        this.selectedShape = selectedShape;
+    }
 }
