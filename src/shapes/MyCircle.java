@@ -71,8 +71,8 @@ public class MyCircle implements Shape{
     }
 
     @Override
-    public void printShape() {
-        System.out.println("CIRCLE");
+    public String printShape() {
+        return "Circle";
     }
     
     @Override

@@ -57,9 +57,7 @@ public class MyTriangle implements Shape{
     @Override
     public boolean pointInside(Point p) {
         double x=p.getX(); double y=p.getY();
-        System.out.println("POINT - X:"+x+" Y:"+y);
         if(y<(k2*x+n2)&&y>(k1*x+n1)&&y>(k3*x+n3)){
-            System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
             return true;
         }
         return false;
@@ -81,8 +79,8 @@ public class MyTriangle implements Shape{
     }
 
     @Override
-    public void printShape() {
-        System.out.println("TRIANGLE");
+    public String printShape() {
+        return "Triangle";
     }
     
     @Override

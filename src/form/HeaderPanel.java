@@ -33,6 +33,7 @@ public class HeaderPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         lbl1 = new javax.swing.JLabel();
+        lbl2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(128, 255, 130));
         setMinimumSize(new java.awt.Dimension(800, 120));
@@ -41,21 +42,28 @@ public class HeaderPanel extends javax.swing.JPanel {
         lbl1.setText("My Drawing Tool");
         lbl1.setPreferredSize(new java.awt.Dimension(800, 120));
 
+        lbl2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lbl2.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 510, Short.MAX_VALUE))
+                    .addComponent(lbl1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
+                .addComponent(lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -66,8 +74,18 @@ public class HeaderPanel extends javax.swing.JPanel {
         lbl1.setHorizontalAlignment((int) JLabel.CENTER_ALIGNMENT);
     }
     
+    public JLabel getLbl2() {
+        return lbl2;
+    }
+
+    public void setLbl2(JLabel lbl2) {
+        this.lbl2 = lbl2;
+    }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl1;
+    private javax.swing.JLabel lbl2;
     // End of variables declaration//GEN-END:variables
 }

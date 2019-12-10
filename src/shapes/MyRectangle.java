@@ -71,8 +71,8 @@ public class MyRectangle implements Shape{
     }
 
     @Override
-    public void printShape() {
-        System.out.println("Rectangle");
+    public String printShape() {
+        return "Rectangle";
     }
 
     @Override

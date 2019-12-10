@@ -22,7 +22,7 @@ public interface Shape {
     public void setPosition(int x,int y);
     public Shape copy();
     public Point getPosition();
-    public void printShape();
+    public String printShape();
     public MyLine getMyLine();
     public void setMyLine(MyLine myLine);
     public void moveShape(int x,int y);

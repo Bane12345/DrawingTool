@@ -46,9 +46,14 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
     @Override
     public void mouseClicked(MouseEvent e) {
         Shape newShape = model.getSelectedShape();
+        myForm.getHeaderPanel().getLbl2().setText("");
         if(activeLine){
-            if(!insideShapeList(myLine.getFirstPoint())||!insideShapeList(myLine.getSecondPoint())){
+            if(!(insideShapeList(myLine.getFirstPoint())>=0)||!(insideShapeList(myLine.getSecondPoint())>=0)){
                 removeMyLine(myLine);
+            }else{
+                int i =insideShapeList(e.getPoint());
+                if(i>=0)
+                    myLine.setSecondPointShape(drawingPanelShapeList.get(i));
             }
             activeLine=false;
             model.setSelectedShape(null);
@@ -63,8 +68,10 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
                 selectedShape=myLine;
                 this.myLine=myLine;
                 drawingPanelShapeList.add(model.getSelectedShape());
-                if(insideShapeList(e.getPoint())){
+                if(insideShapeList(e.getPoint())>=0){
                     myLine.setColor(myForm.getToolPanel().getNormalColor());
+                    myForm.getHeaderPanel().getLbl2().setText("");
+                    myLine.setFirstPointShape(drawingPanelShapeList.get(insideShapeList(e.getPoint())));
                 }else{
                     myLine.setColor(Color.red);
                 }
@@ -108,10 +115,12 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
         }
         //System.out.println(activeLine);
         try {
-            if (insideShapeList(myLine.getFirstPoint()) && insideShapeList(myLine.getSecondPoint())) {
+            if (insideShapeList(myLine.getFirstPoint())>=0 && insideShapeList(myLine.getSecondPoint())>=0) {
                 myLine.setColor(myForm.getToolPanel().getNormalColor());
+                myForm.getHeaderPanel().getLbl2().setText("");
             } else {
                 myLine.setColor(Color.red);
+                myForm.getHeaderPanel().getLbl2().setText("Line have to connect two shapes!");
                 if (activeLine == false) {
                     drawingPanelShapeList.remove(drawingPanelShapeList.size() - 1);
                 }
@@ -139,10 +148,12 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
             }
         }
         if (hovered&&model.getSelectedShape()==null){
+            myForm.getHeaderPanel().getLbl2().setText("Drag mouse to move the "+selectedShape.printShape());
             myForm.getDrawingPanel().setCursor(new Cursor(Cursor.MOVE_CURSOR));
         }else{                 
             if(model.getSelectedShape()==null){
                 myForm.getDrawingPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                myForm.getHeaderPanel().getLbl2().setText("");
             }
         }
     }
@@ -151,22 +162,32 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
         int xp = (int) p.getX();
         int yp = (int) p.getY();
         try{
-            System.out.println("AAAAAAAAAAAAA");
             shape.moveShape(xp-dx,yp-dy);
+            for(Shape shape1: drawingPanelShapeList){
+                if(shape1 instanceof MyLine){
+                    MyLine myLine = (MyLine)shape1;
+                    if(myLine.getFirstPointShape()==shape){
+                        myLine.setLinePosition(p,myLine.getSecondPoint());
+                    }
+                    if(myLine.getSecondPointShape()==shape){
+                        myLine.setLinePosition(myLine.getFirstPoint(),p);
+                    }
+                }
+            }
         }catch(NullPointerException exc){
             
         }
     }
     
     //Method that checks if cursor point to an object of shapeList, except MyLine
-    public boolean insideShapeList(Point p){
+    public int insideShapeList(Point p){
         int n=drawingPanelShapeList.size();
         for(int i=0;i<n;i++){
             if(drawingPanelShapeList.get(i).pointInside(p) && !(drawingPanelShapeList.get(i) instanceof MyLine)){
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
     
     private boolean removeMyLine(MyLine myLine){

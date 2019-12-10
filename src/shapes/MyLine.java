@@ -19,7 +19,8 @@ import java.util.Random;
 public class MyLine implements Shape{
     private int x1,y1,x2,y2;
     private Color color;
-
+    private Shape firstPointShape;
+    private Shape secondPointShape;
     public MyLine(int x1, int y1, int x2, int y2, Color color) {
         this.x1 = x1;
         this.y1 = y1;
@@ -55,8 +56,8 @@ public class MyLine implements Shape{
     }
 
     @Override
-    public void printShape() {
-        System.out.println("LINE");
+    public String printShape() {
+        return "Line";
     }
     
     @Override
@@ -113,4 +114,22 @@ public class MyLine implements Shape{
     public Point getSecondPoint(){
         return new Point(x2,y2);
     }
+
+    public Shape getFirstPointShape() {
+        return firstPointShape;
+    }
+
+    public void setFirstPointShape(Shape firstPointShape) {
+        this.firstPointShape = firstPointShape;
+    }
+
+    public Shape getSecondPointShape() {
+        return secondPointShape;
+    }
+
+    public void setSecondPointShape(Shape secondPointShape) {
+        this.secondPointShape = secondPointShape;
+    }
+    
+    
 }

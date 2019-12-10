@@ -96,6 +96,7 @@ public class ToolPanelListener implements ActionListener,MouseMotionListener,Mou
         for(int i=0;i<n;i++){
             if(toolPanelShapeList.get(i).pointInside(p)){
                 model.setSelectedShape(toolPanelShapeList.get(i).copy());
+                myForm.getHeaderPanel().getLbl2().setText("Click on panel to draw a "+toolPanelShapeList.get(i).printShape());
                 myForm.getDrawingPanel().setCursor(new Cursor(Cursor.HAND_CURSOR));
                 myForm.getToolPanel().setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
