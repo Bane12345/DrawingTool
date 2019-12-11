@@ -19,6 +19,5 @@ public class Main {
         MyForm myform = new MyForm();
         Model model = new Model();        
         Controller controller = new Controller(myform,model);
-        controller.showMyForm();
     }
 }

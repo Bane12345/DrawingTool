@@ -10,10 +10,18 @@ package model;
  * @author Bane
  */
 public class HeaderPanelModel {
-
-
+    private boolean gumica=false;
+    
     public HeaderPanelModel() {
 
     }
 
+    public boolean isGumica() {
+        return gumica;
+    }
+
+    public void setGumica(boolean gumica) {
+        this.gumica = gumica;
+    }
+    
 }

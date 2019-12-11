@@ -16,6 +16,7 @@ public class Model {
     private HeaderPanelModel headerPanelModel;
     private DrawingPanelModel drawingPanelMode;
     private Shape selectedShape;
+    private boolean gumica;
     public Model() {
         this.toolPanelModel = new ToolPanelModel();
         this.headerPanelModel = new HeaderPanelModel();
@@ -52,5 +53,13 @@ public class Model {
 
     public void setSelectedShape(Shape selectedShape) {
         this.selectedShape = selectedShape;
+    }
+
+    public boolean isGumica() {
+        return gumica;
+    }
+
+    public void setGumica(boolean gumica) {
+        this.gumica = gumica;
     }
 }

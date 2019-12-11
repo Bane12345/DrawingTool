@@ -7,13 +7,16 @@ package form;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
  *
  * @author Bane
  */
-public class HeaderPanel extends javax.swing.JPanel {
+public class HeaderPanel extends javax.swing.JPanel{
     private final Color backgroundColor = new Color(22, 247, 101);
     private final int width = 800,height=120;
     public HeaderPanel() {
@@ -21,6 +24,11 @@ public class HeaderPanel extends javax.swing.JPanel {
         setBackground(backgroundColor);
         setSize(width,height);
         prepareLbl1();
+        jButton1.setActionCommand("delete");
+        Icon img = new ImageIcon("resources\\gumica.png");
+        jButton1.setIcon(img);
+        jButton1.setBorder(null);
+        jButton1.setText("");
     }
 
     /**
@@ -34,6 +42,7 @@ public class HeaderPanel extends javax.swing.JPanel {
 
         lbl1 = new javax.swing.JLabel();
         lbl2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(128, 255, 130));
         setMinimumSize(new java.awt.Dimension(800, 120));
@@ -45,16 +54,19 @@ public class HeaderPanel extends javax.swing.JPanel {
         lbl2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lbl2.setForeground(new java.awt.Color(255, 255, 255));
 
+        jButton1.setText("erease");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 510, Short.MAX_VALUE))
-                    .addComponent(lbl1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -62,8 +74,12 @@ public class HeaderPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -81,11 +97,18 @@ public class HeaderPanel extends javax.swing.JPanel {
     public void setLbl2(JLabel lbl2) {
         this.lbl2 = lbl2;
     }
-    
-    
-    
+
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    public void setjButton1(JButton jButton1) {
+        this.jButton1 = jButton1;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
     // End of variables declaration//GEN-END:variables
+
 }

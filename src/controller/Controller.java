@@ -6,12 +6,14 @@
 package controller;
 
 import form.MyForm;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.Timer;
 import listeners.DrawingPanelListener;
+import listeners.HeaderPanelListener;
 import listeners.MyMenuListener;
 import listeners.ToolPanelListener;
 import model.DrawingPanelModel;
@@ -31,12 +33,13 @@ public class Controller {
     public Controller(MyForm myForm, Model model) {
         this.model = model;
         this.myForm=myForm;
+        showMyForm();
     }
     
     public void showMyForm(){
         prepareToolPanel();
-        prepareHeaderPanel();
         prepareDrawingPanel();
+        prepareHeaderPanel();
         prepareMenu();
         prepareForm();
     }
@@ -62,7 +65,9 @@ public class Controller {
         timer2.start();
     }
     private void prepareHeaderPanel(){
-        
+        DrawingPanelListener drawingPanelListener = new DrawingPanelListener(model, myForm);
+        myForm.getHeaderPanel().getjButton1().addActionListener(drawingPanelListener);
+       
     }
     
     private void prepareDrawingPanel(){

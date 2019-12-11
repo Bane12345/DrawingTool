@@ -40,6 +40,17 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
     @Override
     public void actionPerformed(ActionEvent e) {
         myForm.getDrawingPanel().repaint();
+        
+        try{
+        if(e.getActionCommand().equals("delete")){
+            model.setGumica(true);
+            myForm.getHeaderPanel().setCursor(new Cursor(Cursor.HAND_CURSOR));
+            myForm.getDrawingPanel().setCursor(new Cursor(Cursor.HAND_CURSOR));
+            myForm.getHeaderPanel().getLbl2().setText("Click on the shape to delete it");
+        }
+        }catch(NullPointerException exception){
+            
+        }
     }
 
     //Akcija za ubacivanje izabranog oblika na drawingPanel
@@ -47,6 +58,28 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
     public void mouseClicked(MouseEvent e) {
         Shape newShape = model.getSelectedShape();
         myForm.getHeaderPanel().getLbl2().setText("");
+        if(model.isGumica()){
+            int i = insideShapeList(e.getPoint());
+            if(i>=0){
+                Shape deleted = drawingPanelShapeList.get(i);
+                int n = drawingPanelShapeList.size();
+                for(int j=0;j<n;j++){
+                    if(drawingPanelShapeList.get(j) instanceof MyLine){
+                        MyLine deletedLine = (MyLine)drawingPanelShapeList.get(j);
+                        if(deletedLine.getFirstPointShape()==deleted || deletedLine.getSecondPointShape()==deleted){
+                            drawingPanelShapeList.remove(j);
+                            j--;
+                            n=drawingPanelShapeList.size();
+                        }
+                    }
+                }
+                drawingPanelShapeList.remove(deleted);
+                myForm.getDrawingPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                model.setGumica(false);
+            }else{
+                myForm.getHeaderPanel().getLbl2().setText("Click on the shape to delete it");               
+            }
+        }
         if(activeLine){
             if(!(insideShapeList(myLine.getFirstPoint())>=0)||!(insideShapeList(myLine.getSecondPoint())>=0)){
                 removeMyLine(myLine);
@@ -58,7 +91,9 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
             activeLine=false;
             model.setSelectedShape(null);
             myLine=null;
-            myForm.getDrawingPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            if(model.isGumica()==false){
+                myForm.getDrawingPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
         }else if(newShape!=null){
             newShape.setColor(myForm.getToolPanel().getNormalColor());
             if(newShape instanceof MyLine){
@@ -75,11 +110,14 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
                 }else{
                     myLine.setColor(Color.red);
                 }
+                model.setGumica(false);
             }else{
                 newShape.setPosition(e.getX(),e.getY());
                 drawingPanelShapeList.add(model.getSelectedShape());
-                model.setSelectedShape(null);          
-                myForm.getDrawingPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                model.setSelectedShape(null);
+                if(model.isGumica()==false){
+                    myForm.getDrawingPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
             }
         }
     }
@@ -108,6 +146,8 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        if(model.isGumica())
+            myForm.getHeaderPanel().getLbl2().setText("Click on the shape to delete it");
         distance(e.getPoint());
         if(activeLine && selectedShape instanceof MyLine){
             MyLine myLine = (MyLine)selectedShape;
@@ -148,11 +188,18 @@ public class DrawingPanelListener implements ActionListener,MouseListener,MouseM
             }
         }
         if (hovered&&model.getSelectedShape()==null){
-            myForm.getHeaderPanel().getLbl2().setText("Drag mouse to move the "+selectedShape.printShape());
-            myForm.getDrawingPanel().setCursor(new Cursor(Cursor.MOVE_CURSOR));
+            if(model.isGumica()==false){
+                myForm.getHeaderPanel().getLbl2().setText("Drag mouse to move the "+selectedShape.printShape());
+            }
+            if(model.isGumica()==false){
+                myForm.getDrawingPanel().setCursor(new Cursor(Cursor.MOVE_CURSOR));
+            }
         }else{                 
             if(model.getSelectedShape()==null){
-                myForm.getDrawingPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                if(model.isGumica()==false){
+                    myForm.getDrawingPanel().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
+                if(model.isGumica()==false)
                 myForm.getHeaderPanel().getLbl2().setText("");
             }
         }
