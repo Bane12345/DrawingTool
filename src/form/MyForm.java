@@ -5,6 +5,9 @@
  */
 package form;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 
 /**
@@ -20,10 +23,14 @@ public class MyForm extends javax.swing.JFrame {
         initComponents();
         setTitle("My Drawing Tool!");
         setSize(width,height);
-        setResizable(false);
-        toolPanel1.setSize(width-800,height);
-        drawingPanel.setSize(width-200,height-120);
-        headerPanel.setSize(120,800);
+        setResizable(true);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
+        GraphicsDevice device = GraphicsEnvironment
+        .getLocalGraphicsEnvironment().getScreenDevices()[0];
+        device.setFullScreenWindow(this);
+//        toolPanel.setSize(width-800,height);
+//        drawingPanel.setSize(width-200,height-120);
+//        headerPanel.setSize(120,800);
     }
 
     /**
@@ -35,8 +42,8 @@ public class MyForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        toolPanel = new form.ToolPanel();
         headerPanel = new form.HeaderPanel();
-        toolPanel1 = new form.ToolPanel();
         drawingPanel = new form.DrawingPanel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -46,8 +53,8 @@ public class MyForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 600));
-
-        headerPanel.setPreferredSize(new java.awt.Dimension(800, 120));
+        getContentPane().add(toolPanel, java.awt.BorderLayout.EAST);
+        getContentPane().add(headerPanel, java.awt.BorderLayout.NORTH);
 
         javax.swing.GroupLayout drawingPanelLayout = new javax.swing.GroupLayout(drawingPanel);
         drawingPanel.setLayout(drawingPanelLayout);
@@ -57,8 +64,10 @@ public class MyForm extends javax.swing.JFrame {
         );
         drawingPanelLayout.setVerticalGroup(
             drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 592, Short.MAX_VALUE)
         );
+
+        getContentPane().add(drawingPanel, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("File");
 
@@ -75,38 +84,15 @@ public class MyForm extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(drawingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addComponent(toolPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(drawingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(toolPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     public ToolPanel getToolPanel() {
-        return toolPanel1;
+        return toolPanel;
     }
 
     public void setToolPanel(ToolPanel toolPanel) {
-        this.toolPanel1 = toolPanel;
+        this.toolPanel = toolPanel;
     }
 
     public HeaderPanel getHeaderPanel() {
@@ -137,6 +123,6 @@ public class MyForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private form.ToolPanel toolPanel1;
+    private form.ToolPanel toolPanel;
     // End of variables declaration//GEN-END:variables
 }

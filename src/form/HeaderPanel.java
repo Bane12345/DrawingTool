@@ -7,10 +7,12 @@ package form;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import main.Main;
 
 /**
  *
@@ -22,10 +24,11 @@ public class HeaderPanel extends javax.swing.JPanel{
     public HeaderPanel() {
         initComponents();
         setBackground(backgroundColor);
-        setSize(width,height);
+        setSize(width, height);
         prepareLbl1();
         jButton1.setActionCommand("delete");
-        Icon img = new ImageIcon("resources\\gumica.png");
+        URL url = Main.class.getResource("/gumica.png");
+        Icon img = new ImageIcon(url);
         jButton1.setIcon(img);
         jButton1.setBorder(null);
         jButton1.setText("");

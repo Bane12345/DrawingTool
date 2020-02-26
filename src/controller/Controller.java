@@ -8,6 +8,7 @@ package controller;
 import form.MyForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ import listeners.DrawingPanelListener;
 import listeners.HeaderPanelListener;
 import listeners.MyMenuListener;
 import listeners.ToolPanelListener;
+import main.Main;
 import model.DrawingPanelModel;
 import model.Model;
 import model.ToolPanelModel;
@@ -78,7 +80,8 @@ public class Controller {
     }
 
     private void prepareForm() {
-        ImageIcon img = new ImageIcon("resources\\crtanje.png");
+        URL url = Main.class.getResource("/crtanje.png");
+        ImageIcon img = new ImageIcon(url);
         myForm.setIconImage(img.getImage());
         myForm.setVisible(true);
         myForm.setLocationRelativeTo(null);
